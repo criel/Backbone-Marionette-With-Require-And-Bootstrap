@@ -1,8 +1,10 @@
 define(['backbone',
-		'controllers/Controller'
+		'controllers/Controller',
+		'controllers/ErrorController'
 ],
  function (backbone,
-		   Controller
+		   Controller,
+		   ErrorController
 ) {
 	var initialize = function(app) {
 	    var appRouter = backbone.Router.extend({
@@ -10,11 +12,14 @@ define(['backbone',
 	            '*actions': 'defaultAction'
 	        }
 	    });
+		
+		var options = { app: app };
 	    
-		var controller = new Controller();
+		var errorController = new ErrorController(options);
+		var controller = new Controller(options);
 		
 	    var router = new appRouter();
-	    router.on('route:defaultAction', controller.loadView);
+		router.on("route:defaultAction", controller.loadView);
 		backbone.history.start();
 	};
 	return {
