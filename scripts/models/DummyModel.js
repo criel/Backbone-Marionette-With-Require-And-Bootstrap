@@ -1,32 +1,42 @@
 ﻿define([
-  'models/GenericModel',
-  'i18n'
-], function (GenericModel, i18n) {
+  'models/GenericModel'
+], function (GenericModel) {
     return GenericModel.extend({
 		url: '/dummy/url',
 		
-		validate: function(fieldName, fieldValue) {
-			var errors = [];
-			if(fieldName=='textInputId') {
-				if(fieldValue == '') {
-					errors[errors.length] = i18n[fieldName + '_required'];
-					return errors;
-				}
-				if(fieldValue != 'Muha') {
-					errors[errors.length] = i18n[fieldName + '_error1'];
-				}
-				if(fieldValue[0] != 'M') {
-					errors[errors.length] = i18n[fieldName + '_error2'];
-				}
-			} 
-			
-			if(fieldName=='textInputId2') {
-				if(this.get('textInputId') == 'Muha' && fieldValue == '') {
-					errors[errors.length] = i18n[fieldName + '_required_when_muha'];
-					return errors;
-				}
+		validateModel: function(messages, fieldName, fieldValue) {
+			this.validateTextInput(messages, fieldName, fieldValue); 
+			this.validateTextInput2(messages, fieldName, fieldValue); 
+		},
+		
+		validateTextInput: function(messages, fieldName, fieldValue) {
+			if(fieldName!='textInputId') 
+				return;
+
+			if(fieldValue == '') {
+				this.addMessage(messages.errors, fieldName, '_required');
+				return;
 			}
-			return errors;
-		}
+			if(fieldValue.toUpperCase() != 'MUHA') {
+				this.addMessage(messages.errors, fieldName, '_error1');
+			}
+			if(fieldValue[0] != 'M') {
+				this.addMessage(messages.warnings, fieldName, '_warn1');
+			}
+			if(fieldValue.toUpperCase() == 'MUHA') {
+				this.addMessage(messages.infos, fieldName, '_info1');
+			}
+		},
+		
+		validateTextInput2: function(messages, fieldName, fieldValue) {
+			if(fieldName!='textInputId2') 
+				return;
+
+			if(this.get('textInputId').toUpperCase() == 'MUHA' && fieldValue == '') {
+				this.addMessage(messages.errors, fieldName, '_required_when_muha');
+				return;
+			}
+		},
+		
 	});
 });

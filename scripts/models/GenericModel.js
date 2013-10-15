@@ -1,6 +1,6 @@
 ﻿define([
-  'backbone', 'controllers/util/FetchController'
-], function (backbone, FetchController) {
+  'backbone', 'controllers/util/FetchController', 'i18n'
+], function (backbone, FetchController, i18n) {
     return backbone.Model.extend({
 		
 		initialize: function(options) {
@@ -12,7 +12,7 @@
 		},
 		
 		save: function(options) {
-			backbone.Model.prototype.save.call(this, this.fetchController.extendModelOptions(options));
+			backbone.Model.prototype.save.call(this, null, this.fetchController.extendModelOptions(options));
 		},
 	
 		fetch: function (options) {
@@ -28,6 +28,17 @@
             var firstKey = key.substring(0, key.indexOf('.'));
             var obj = this.get(firstKey);
             return eval('obj' + key.substring(key.indexOf('.')) + "=" + value);
-        }
+        },
+		
+		validate: function(fieldName, fieldValue) {
+			var messages = {'errors': [], 'warnings': [], 'infos': []};
+			this.validateModel(messages, fieldName, fieldValue); 
+			return messages;
+		},
+		
+		addMessage: function(messages, fieldName, messageKey) {
+			messages[messages.length] = i18n[fieldName + messageKey];
+		},
+
 	});
 });

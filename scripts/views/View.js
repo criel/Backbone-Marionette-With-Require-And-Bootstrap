@@ -4,10 +4,27 @@ function (FormView, viewTemplate) {
 	    template: viewTemplate,
 		
 		events: {
-			'blur input': 'updateModel'
+			'blur input': 'updateModel',
+			'click #save': 'save',
+			'click #cancel': 'cancel'
 		},
 		
 		init: function(options) {
 		},
+		
+		save: function() {
+			this.model.save({success: this.success, error: this.error});
+		},
+		
+		success: function() {
+			alert("Success");
+		},
+		
+		error: function() {
+			alert("Error");
+		},
+		
+		cancel: function() {
+		}
 	});
 });
