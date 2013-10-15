@@ -18,5 +18,16 @@
 		fetch: function (options) {
 			backbone.Model.prototype.fetch.call(this, this.fetchController.extendModelOptions(options));
 		},
+		
+		set: function (key, value) {
+            if (key.length == null || key.indexOf('.') < 0) {
+                backbone.Model.prototype.set.call(this, key, value);
+                return;
+            }
+
+            var firstKey = key.substring(0, key.indexOf('.'));
+            var obj = this.get(firstKey);
+            return eval('obj' + key.substring(key.indexOf('.')) + "=" + value);
+        }
 	});
 });
