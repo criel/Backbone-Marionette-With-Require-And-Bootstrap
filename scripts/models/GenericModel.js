@@ -30,9 +30,10 @@
             return eval('obj' + key.substring(key.indexOf('.')) + "=" + value);
         },
 		
-		validate: function(fieldName, fieldValue) {
+		validateField: function(fieldName, fieldValue) {
 			var messages = {'errors': [], 'warnings': [], 'infos': []};
-			this.validateModel(messages, fieldName, fieldValue); 
+			if(this.runFieldValidation) 
+				this.runFieldValidation(messages, fieldName, fieldValue); 
 			return messages;
 		},
 		

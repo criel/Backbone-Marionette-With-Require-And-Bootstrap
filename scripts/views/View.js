@@ -9,21 +9,17 @@ function (FormView, viewTemplate) {
 			'click #cancel': 'cancel'
 		},
 		
-		init: function(options) {
-		},
+//		init: function(options) {
+//		},
 		
 		save: function() {
-			this.model.save({success: this.success, error: this.error});
+			this.model.save({success: this.success});
 		},
 		
-		success: function() {
+		success: function(model, response, options) {
 			alert("Success");
 		},
-		
-		error: function() {
-			alert("Error");
-		},
-		
+				
 		cancel: function() {
 		}
 	});

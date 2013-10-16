@@ -11,7 +11,7 @@ function (ItemView, i18n) {
 		},
 		
 		validateField: function(fieldName, fieldValue) {
-			var messages = this.model.validate(fieldName, fieldValue);
+			var messages = this.model.validateField(fieldName, fieldValue);
 			
 			var helpBox = $(this.el).find('#'+fieldName+'-help');
 			this.renderMessages(helpBox, messages);

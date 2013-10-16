@@ -4,7 +4,7 @@
     return GenericModel.extend({
 		url: '/dummy/url',
 		
-		validateModel: function(messages, fieldName, fieldValue) {
+		runFieldValidation: function(messages, fieldName, fieldValue) {
 			this.validateTextInput(messages, fieldName, fieldValue); 
 			this.validateTextInput2(messages, fieldName, fieldValue); 
 		},

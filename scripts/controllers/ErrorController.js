@@ -1,9 +1,10 @@
-define(['marionette', 'vent'],
-function (marionette, vent) {
+define(['marionette', 'vent', 'i18n', 'views/GenericDialogView'],
+function (marionette, vent, i18n, GenericDialogView) {
     return marionette.Controller.extend({
 	
 		initialize: function(options) {
             this.app = options.app;
+			_.bindAll(this, 'genericError', 'unauthenticated', 'unauthorized', 'requestTimeout');
 			vent.bind("unauthenticated", this.unauthenticated);
 			vent.bind("unauthorized", this.unauthorized);
 			vent.bind("genericError", this.genericError);
@@ -15,16 +16,27 @@ function (marionette, vent) {
 		},
 		
 		unauthorized: function() {
-			// redirect to login? or to an unauthorized page? ... 
-			// this should never happen in production unless it's a coding error, or the user attempted an unauthorized URL
+			var genericDialogView = new GenericDialogView({
+				header: i18n['unauthorized_error_header'],
+				messages: i18n['unauthorized_error']
+			});
+			this.app.dialog.show(genericDialogView);
 		},
 		
 		genericError: function() {
-			
+			var genericDialogView = new GenericDialogView({
+				header: i18n['generic_error_header'],
+				messages: i18n['generic_error']
+			});
+			this.app.dialog.show(genericDialogView);
 		},
 		
 		requestTimeout: function() {
-			
+			var genericDialogView = new GenericDialogView({
+				header: i18n['timeout_error_header'],
+				messages: i18n['timeout_error']
+			});
+			this.app.dialog.show(genericDialogView);
 		},
 		
 		
