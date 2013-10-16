@@ -5,6 +5,12 @@
 		
 		initialize: function(options) {
 			this.fetchController = new FetchController();
+			
+			if(!options)
+				return;
+			
+			this.name = options.name;
+			this.url = options.url;
 		},
 		
 		destroy: function(options) {
@@ -38,7 +44,7 @@
 		},
 		
 		addMessage: function(messages, fieldName, messageKey) {
-			messages[messages.length] = i18n[fieldName + messageKey];
+			messages[messages.length] = i18n[fieldName][messageKey];
 		},
 
 	});

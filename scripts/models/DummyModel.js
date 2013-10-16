@@ -2,6 +2,7 @@
   'models/GenericModel'
 ], function (GenericModel) {
     return GenericModel.extend({
+		name: 'dummyModel',
 		url: '/dummy/url',
 		
 		runFieldValidation: function(messages, fieldName, fieldValue) {
@@ -14,17 +15,17 @@
 				return;
 
 			if(fieldValue == '') {
-				this.addMessage(messages.errors, fieldName, '_required');
+				this.addMessage(messages.errors, fieldName, 'required');
 				return;
 			}
 			if(fieldValue.toUpperCase() != 'MUHA') {
-				this.addMessage(messages.errors, fieldName, '_error1');
+				this.addMessage(messages.errors, fieldName, 'error1');
 			}
 			if(fieldValue[0] != 'M') {
-				this.addMessage(messages.warnings, fieldName, '_warn1');
+				this.addMessage(messages.warnings, fieldName, 'warn1');
 			}
 			if(fieldValue.toUpperCase() == 'MUHA') {
-				this.addMessage(messages.infos, fieldName, '_info1');
+				this.addMessage(messages.infos, fieldName, 'info1');
 			}
 		},
 		
@@ -33,7 +34,7 @@
 				return;
 
 			if(this.get('textInputId').toUpperCase() == 'MUHA' && fieldValue == '') {
-				this.addMessage(messages.errors, fieldName, '_required_when_muha');
+				this.addMessage(messages.errors, fieldName, 'required_when_muha');
 				return;
 			}
 		},

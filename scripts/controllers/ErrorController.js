@@ -20,6 +20,7 @@ function (marionette, vent, i18n, GenericDialogView) {
 				header: i18n['unauthorized_error_header'],
 				messages: i18n['unauthorized_error']
 			});
+			this.app.dialog.close();
 			this.app.dialog.show(genericDialogView);
 		},
 		
@@ -28,6 +29,7 @@ function (marionette, vent, i18n, GenericDialogView) {
 				header: i18n['generic_error_header'],
 				messages: i18n['generic_error']
 			});
+			this.app.dialog.close();
 			this.app.dialog.show(genericDialogView);
 		},
 		
@@ -36,6 +38,7 @@ function (marionette, vent, i18n, GenericDialogView) {
 				header: i18n['timeout_error_header'],
 				messages: i18n['timeout_error']
 			});
+			this.app.dialog.close();
 			this.app.dialog.show(genericDialogView);
 		},
 		

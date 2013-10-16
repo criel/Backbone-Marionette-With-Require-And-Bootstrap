@@ -25,7 +25,7 @@ function (ItemView, viewTemplate) {
 		},
 
 		showDialog: function () {
-            this.ui.genericDialog.modal('show');
+            this.ui.genericDialog.modal({backdrop: false});
         },
 		
 		dismissDialog: function() {

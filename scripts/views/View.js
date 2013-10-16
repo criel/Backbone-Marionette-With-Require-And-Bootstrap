@@ -9,8 +9,11 @@ function (FormView, viewTemplate) {
 			'click #cancel': 'cancel'
 		},
 		
-//		init: function(options) {
-//		},
+		init: function(options) {
+		},
+		
+		switchTemplateOnLoad: function () {
+		},
 		
 		save: function() {
 			this.model.save({success: this.success});
@@ -19,7 +22,7 @@ function (FormView, viewTemplate) {
 		success: function(model, response, options) {
 			alert("Success");
 		},
-				
+			
 		cancel: function() {
 		}
 	});

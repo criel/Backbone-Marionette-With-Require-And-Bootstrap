@@ -1,26 +1,31 @@
-﻿define(['marionette', 'app', 
+﻿define(['controllers/BaseController', 
 'views/View',
 'models/DummyModel',
+'models/GenericCollection'
 ],
-function (marionette, app, 
+function (BaseController, 
 View,
-DummyModel) {
-    return marionette.Controller.extend({
+DummyModel,
+GenericCollection) {
+    return BaseController.extend({
 
-		initialize: function(options) {
-            this.app = options.app;
+		init: function(options) {
 			_.bindAll(this, 'loadView');
         },
 		
 		loadView: function() {
-			var model = new DummyModel();
-			var view = new View({
-				model: model
-			});
-			model.fetch();
+			var options = {
+				viewMode: Constants.VIEW_MODE_CREATE,
+				model: new DummyModel(),
+				collection: null,
+				models: {
+					checkboxEnums: new GenericCollection({name:'checkboxEnums', url: '/enumerations/test1'})
+				}
+			};
 			
-			this.app.content.show(view);
-		}
+			var view = this.initCreateView(View, options);
+			this.app.content.show(view);			
+		},
 		
 
     });

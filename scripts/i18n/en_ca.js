@@ -1,16 +1,24 @@
 ﻿define([], function () {
 
     return {
-		textInputId_label: "Text Input",
-		textInputId_placeholder: "Enter 'Muha' here",
-		textInputId_required: "Value required!",
-        textInputId_error1: "Value must be 'Muha'!",
-        textInputId_warn1: "Don't forget to capitalize the 'M'.",
-        textInputId_info1: "Another Input is now required.",
+		textInputId: {
+			label: "Text Input",
+			placeholder: "Enter 'Muha' here",
+			required: "Value required!",
+			error1: "Value must be 'Muha'!",
+			warn1: "Don't forget to capitalize the 'M'.",
+			info1: "Another Input is now required.",
+		},
 		
-		textInputId2_label: "Another Input",
-		textInputId2_placeholder: "Enter something here",
-		textInputId2_required_when_muha: "Value required when Muha.",
+		textInputId2: {
+			label: "Another Input",
+			placeholder: "Enter something here",
+			required_when_muha: "Value required when Muha.",
+		},
+		
+		checkInputsId: {
+			label: "Checkbox Input",			
+		},
 		
 		generic_error_header: "Server Error",
 		generic_error: "An error occurred submitting your request. Please try again later. If the problem persists, please contact customer support at 1-800-...",
@@ -21,9 +29,11 @@
 		timeout_error_header: "Timeout Error",
 		timeout_error: "The operation you attempted timed out. Please try again later. If the problem persists, please contact customer support at 1-800-...",
 
-		button_save: "Save",
-		button_cancel: "Cancel",
-		button_dismiss: "Dismiss"
+		button: {
+			save: "Save",
+			cancel: "Cancel",
+			dismiss: "Dismiss",
+		},
 		
     };
 });
